@@ -21,7 +21,7 @@ public class CharacterRecognition {
     public void generateImageOfResultWithFileName(String imgName, WebElement webElement) throws IOException, InterruptedException {
         Thread.sleep(1000);
 
-        String imageFileLocation = currentDirectory + "/src/test/resources/"+ imgName + ".png";
+        String imageFileLocation = currentDirectory + "/src/test/resources/actualImages/"+ imgName + ".png";
         WebDriver webDriver = ((WrapsDriver)((WrapsElement)webElement).getWrappedElement()).getWrappedDriver();
 
         File screen = ((TakesScreenshot) webDriver)
@@ -45,7 +45,7 @@ public class CharacterRecognition {
 
     public void verifyThatImageIsCorrect(String imgName) throws IOException {
         String expectedImageLocation = currentDirectory + "/src/test/resources/expectedImages/" + imgName + ".png";
-        String actualImageLocation = currentDirectory + "/src/test/resources/" + imgName + ".png";
+        String actualImageLocation = currentDirectory + "/src/test/resources/actualImages/" + imgName + ".png";
 
         BufferedImage expected = ImageIO.read(new File(expectedImageLocation));
         BufferedImage actual = ImageIO.read(new File(actualImageLocation));
