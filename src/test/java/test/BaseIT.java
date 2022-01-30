@@ -23,7 +23,7 @@ public class BaseIT {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
-        options.addArguments("--window-size=1900x1280");
+        options.addArguments("--window-size=1400x900");
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
