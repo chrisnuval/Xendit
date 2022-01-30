@@ -16,7 +16,11 @@ jobs:
           command: |
             mkdir -p ~/test-results/junit/
             find . -type f -regex ".*/target/failsafe-reports/testng-results.xml" -exec cp {} ~/test-results/junit/ \;
-            find . -type f -regex ".*/target/failsafe-reports/.*png" -exec cp {} ~/test-results/ \;
+          when: always 
+      - run:
+          name: Save Failed artifacts results
+          command: |
+            find . -type f -regex ".*/target/failsafe-reports/.*png" -exec cp {} ~/test-results/junit/ \;
           when: always 
       - store_test_results:
           path: ~/test-results
