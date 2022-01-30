@@ -11,3 +11,25 @@ jobs:
       - run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
       - run: sudo apt install -y ./google-chrome-stable_current_amd64.deb
       - run: mvn verify
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/target/failsafe-reports/junitreports/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always 
+      - run:
+          name: Save Failed artifacts results
+          command: |
+            find . -type f -regex ".*/target/failsafe-reports/.*IT.*png" -exec cp {} ~/test-results/junit/ \;
+          when: always 
+      ### Can be used to Store actual image in case you add more tests
+      ### Use images stored as expected Images for new tests
+      # - run:
+      #     name: Save Actual results
+      #     command: |
+      #       find . -type f -regex ".*/resources/.*png" -exec cp {} ~/test-results/junit/ \;
+      #     when: always 
+      - store_test_results:
+          path: ~/test-results
+      - store_artifacts:
+          path: ~/test-results/junit
