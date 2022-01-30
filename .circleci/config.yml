@@ -10,6 +10,14 @@ jobs:
       - run: sudo apt-get install -y libnss3-tools
       - run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
       - run: sudo apt install -y ./google-chrome-stable_current_amd64.deb
-      - run: ls /home/circleci/project/src/resources
-      - run: ls /home/circleci/project/src/resources/expectedImages
       - run: mvn verify
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/target/failsafe-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
+      - store_test_results:
+          path: ~/test-results
+      - store_artifacts:
+          path: ~/test-results/junit
