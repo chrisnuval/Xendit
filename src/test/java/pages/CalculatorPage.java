@@ -1,21 +1,21 @@
 package pages;
 
-import common.CharacterRecognition;
+import common.ImageProcessing;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import java.io.IOException;
+import org.testng.Assert;
 
 public class CalculatorPage {
     WebDriver driver;
-    CharacterRecognition captureImage;
+    ImageProcessing captureImage;
 
     public CalculatorPage(WebDriver driver) {
         this.driver = driver;
-        this.captureImage = new CharacterRecognition();
+        this.captureImage = new ImageProcessing();
         PageFactory.initElements(driver,this);
     }
 
@@ -32,9 +32,9 @@ public class CalculatorPage {
 
     public void pressDivide() { calculator.sendKeys(Keys.DIVIDE); }
 
-    public void verifyResultIsCorrect(String imgName) throws IOException, InterruptedException {
+    public void verifyResultIsCorrect(String imgName) {
         captureImage.generateImageOfResultWithFileName(imgName, calculator);
-        captureImage.verifyThatImageIsCorrect(imgName);
+        Assert.assertTrue(captureImage.verifyThatImageIsCorrect(imgName));
     }
 
 }

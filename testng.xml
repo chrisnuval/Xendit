@@ -5,6 +5,7 @@
     <test name = "Calculator test">
         <classes>
             <class name = "test.MathOperationsIT" />
+            <class name = "test.CalculatorUsagesIT" />
         </classes>
     </test>
 </suite>
