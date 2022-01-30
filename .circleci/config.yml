@@ -1,0 +1,13 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/openjdk:11.0
+    steps:
+      - checkout
+      - run: sudo apt-get update -y
+      - run: sudo apt-get install -y libnss3-tools
+      - run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      - run: sudo apt install -y ./google-chrome-stable_current_amd64.deb
+      - run: mvn verify

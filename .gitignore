@@ -1,0 +1,10 @@
+/target/
+/.idea/
+/src/test/resources/actualImages/0.png
+/src/test/resources/actualImages/1.5.png
+/src/test/resources/actualImages/1.png
+/src/test/resources/actualImages/3.7.png
+/src/test/resources/actualImages/4.png
+/src/test/resources/actualImages/6.png
+/src/test/resources/actualImages/123456789.png
+/src/test/resources/actualImages/-123456789.png
