@@ -20,7 +20,7 @@ public class ImageProcessing {
     public void generateImageOfResultWithFileName(String imgName, WebElement webElement) {
         try {
             Thread.sleep(1000);
-            String imageFileLocation = currentDirectory + "/src/test/resources/actualImages/"+ imgName + ".png";
+            String imageFileLocation = currentDirectory + "/src/test/resources/"+ imgName + ".png";
             WebDriver webDriver = ((WrapsDriver)((WrapsElement)webElement).getWrappedElement()).getWrappedDriver();
 
             File screen = ((TakesScreenshot) webDriver)
@@ -48,7 +48,7 @@ public class ImageProcessing {
 
     public boolean verifyThatImageIsCorrect(String imgName) {
         String expectedImageLocation = currentDirectory + "/src/test/resources/expectedImages/" + imgName + ".png";
-        String actualImageLocation = currentDirectory + "/src/test/resources/actualImages/" + imgName + ".png";
+        String actualImageLocation = currentDirectory + "/src/test/resources/" + imgName + ".png";
 
         try {
             BufferedImage expectedBufferImage = ImageIO.read(new File(expectedImageLocation));
