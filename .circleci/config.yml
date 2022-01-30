@@ -20,7 +20,12 @@ jobs:
       - run:
           name: Save Failed artifacts results
           command: |
-            find . -type f -regex ".*/target/failsafe-reports/.*IT.png" -exec cp {} ~/test-results/junit/ \;
+            find . -type f -regex ".*/target/failsafe-reports/.*IT.*png" -exec cp {} ~/test-results/junit/ \;
+          when: always 
+      - run:
+          name: Save Actual results
+          command: |
+            find . -type f -regex ".*/resources/.*png" -exec cp {} ~/test-results/junit/ \;
           when: always 
       - store_test_results:
           path: ~/test-results
