@@ -1,21 +1,17 @@
 package pages;
 
 import common.CharacterRecognition;
-import net.sourceforge.tess4j.TesseractException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
-
 import java.io.IOException;
 
 public class CalculatorPage {
     WebDriver driver;
     CharacterRecognition captureImage;
-    String imgFileLocation;
 
     public CalculatorPage(WebDriver driver) {
         this.driver = driver;
@@ -36,14 +32,9 @@ public class CalculatorPage {
 
     public void pressDivide() { calculator.sendKeys(Keys.DIVIDE); }
 
-    public void generateImageOfResultWithFileName(String imgName) throws IOException {
-        imgFileLocation = captureImage.captureImageOf(calculator, imgName);
+    public void verifyResultIsCorrect(String imgName) throws IOException, InterruptedException {
+        captureImage.generateImageOfResultWithFileName(imgName, calculator);
+        captureImage.verifyThatImageIsCorrect(imgName);
     }
-
-    public void verifyIfCorrect(String expected) throws TesseractException {
-        String actual = captureImage.recognizeCharacterInImage(imgFileLocation);
-        Assert.assertEquals(expected,actual);
-    }
-
 
 }
